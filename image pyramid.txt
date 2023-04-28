@@ -1,0 +1,25 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+*********************************************************************************************************************************
+
+image pyramid
+
+import cv2 as cv
+
+img = cv.imread("images.jpg")
+
+for i in range(3):
+    img = cv.pyrDown(img)
+    cv.imshow("pyramid",img)
+    cv.waitKey(0)
+      
+
+img = cv.imread("images.jpg")
+
+for i in range(3):
+    img = cv.pyrUp(img)
+    cv.imshow("pyramid",img)
+    cv.waitKey(0)

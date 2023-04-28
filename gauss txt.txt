@@ -1,0 +1,34 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+***************************************************************************************************************************************************** 
+import cv2
+def img_upsample(img,count=3):
+    layers=[img.copy()]
+    for i in range(count):
+        img=cv2.pyrUp(img)
+        layers.append(img)
+    return layers
+
+img=cv2.imread('xyz.jpg')
+imgUp_layers=img_upsample(img)
+for i,raw_img in enumerate(imgUp_layers):
+    cv2.imshow(f"img-{i}",raw_img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+def img_downsample(img,count=3):
+    layers=[img.copy()]
+    for i in range(count):
+        img=cv2.pyrDown(img)
+        layers.append(img)
+    return layers
+
+img=cv2.imread('xyz.jpg')
+imgDown_layers=img_downsample(img)
+for i,raw_img in enumerate(imgDown_layers):
+    cv2.imshow(f"img-{i}",raw_img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()

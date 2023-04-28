@@ -1,0 +1,68 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+*********************************************************************************************************************************
+Opening and Closing:
+
+import cv2 as cv
+import numpy as np
+
+def grayscale_to_blackwhie(img):
+    for i in range(img.shape[0]):
+        for j in range(img.shape[1]):
+            if img[i][j]>50:
+                img[i][j]=1
+            else:
+                img[i][j]=0
+    return img
+
+def dil(img,SE):
+    SE_size=SE.shape[0]//2
+    img_temp=img.copy()
+    for i in range(SE_size,img.shape[0]-SE_size):
+        for j in range(SE_size,img.shape[1]-SE_size):
+            temp=img[i-SE_size:i+SE_size+1,j-SE_size:j+SE_size+1]
+            if not (temp == SE).any():
+                img_temp[i,j]=0
+            else:
+                img_temp[i,j]=255
+    return img_temp
+
+def erosion(img,SE):
+    SE_size=SE.shape[0]//2
+    img_temp=img.copy()
+    for i in range(SE_size,img.shape[0]-SE_size):
+        for j in range(SE_size,img.shape[1]-SE_size):
+            temp=img[i-SE_size:i+SE_size+1,j-SE_size:j+SE_size+1]
+            if not (temp == SE).all():
+                img_temp[i,j]=0
+    return img_temp
+
+#CLose
+img=cv.imread('cb.jpg')
+t,img=cv.threshold(img,127,255,cv.THRESH_BINARY)
+SE=np.array([[255,255,255],[255,255,255],[255,255,255]])
+new_img=dil(img,SE)
+eros=erosion(new_img,SE)
+
+
+con1=np.concatenate((new_img,eros),axis=1)
+cv.imshow("close",con1)
+cv.waitKey(0)
+
+#Open
+img=cv.imread('cb.jpg')
+t,img=cv.threshold(img,127,255,cv.THRESH_BINARY)
+SE=np.array([[255,255,255],[255,255,255],[255,255,255]])
+new_img=erosion(img,SE)
+dilation=dil(new_img,SE)
+
+con2=np.concatenate((new_img,eros),axis=1)
+cv.imshow("open",con2)
+cv.waitKey(0)
+
+con=np.concatenate((con1,con2),axis=1)
+cv.imshow("open",con)
+cv.waitKey(0)

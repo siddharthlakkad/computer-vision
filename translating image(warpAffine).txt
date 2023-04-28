@@ -1,0 +1,26 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+*******************************************************************************************************************************
+
+import numpy as np
+import cv2 as cv
+
+#translating image
+def transform(img,matrix):
+    return cv.warpAffine(img,matrix,(img.shape[0],img.shape[1]))
+
+
+img=cv.imread('Colorful_fishes.jpg',0)
+img=cv.resize(img,(700,700))
+I=np.float32([
+    [1,0,50],
+    [0,1,60]
+])
+new_img=transform(img,I)
+cv.imshow('img',img)
+cv.imshow('transformed_img',new_img)
+cv.waitKey(0)
+cv.destroyAllWindows()

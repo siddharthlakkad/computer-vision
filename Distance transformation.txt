@@ -1,0 +1,19 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+********************************************************************************************************************************
+#Distance Transformation 
+
+import numpy as np
+import cv2 as cv
+
+img=cv.imread("Colorful_fishes.jpg",0)
+img=cv.resize(img,(700,700))
+_,threshold=cv.threshold(img,123,255,cv.THRESH_BINARY)
+distTransformation=cv.distanceTransform(threshold,cv.DIST_L2,3)
+cv.imshow("original _img",img)
+cv.imshow("Transformed image",distTransformation)
+cv.waitKey(0)
+cv.destroyAllWindows()

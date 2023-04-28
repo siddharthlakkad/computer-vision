@@ -1,0 +1,17 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+********************************************************************************************************************************
+With Matrix
+
+import numpy as np
+import cv2 as cv
+
+img=cv.imread("cb.jpg",0)
+sobel=cv.Sobel(img,-1,1,0)
+cv.imshow("original_img",img)
+cv.imshow("sobel_img",sobel)
+cv.waitKey(0)
+cv.destroyAllWindows

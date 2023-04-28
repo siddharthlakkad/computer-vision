@@ -1,0 +1,22 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+*********************************************************************************************************************************
+#Image repair by Inpainting
+
+import cv2
+import numpy as np
+
+img=cv2.imread("download.png")
+dg=cv2.imread("download (1).png",0)
+cv2.imshow("original",img)
+cv2.imshow("demage",dg)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+out=cv2.inpaint(img,dg,3,cv2.INPAINT_TELEA)
+cv2.imshow("cover",out)
+cv2.waitKey(0)
+cv2.destroyAllWindows()

@@ -1,0 +1,21 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+*******************************************************************************************************************************
+
+import numpy as np
+import cv2 as cv2
+
+def shering(img,matrix):
+    return cv.warpAffine(img,matrix,(img.shape[0],img.shape[1]))
+
+img=cv.imread("Colorful_fishes.jpg",)
+# img=cv.resize(img,(700,700))
+S=np.float32([[1,1.5,100],[1.5,1,100]])
+new_img=shering(img,S)
+cv.imshow("original img",img)
+cv.imshow("nwe_img",new_img)
+cv.waitKey(0)
+cv.destroyAllWindows()

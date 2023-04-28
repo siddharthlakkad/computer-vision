@@ -1,0 +1,84 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+**********************************************************************************************************************************
+FILTER 2D:
+
+import cv2
+import numpy as np
+
+image = cv2.imread('image.jpg')
+
+identity_kernal=np.array([[0, 0, 0],
+                    [0, 1, 0],
+                    [0, 0, 0]])
+edge_detection_kernel=np.array([[-1, -1, -1],
+                    [-1, 8, -1],
+                    [-1, -1, -1]])
+sharpen_kernal=np.array([[0, -1, 0],
+                    [-1, 5, -1],
+                    [0, -1, 0]])
+boxblur_kernal=np.array([[1, 1, 1],
+                    [1, 1, 1],
+                    [1, 1, 1]])/9
+gaussianblur_kernal=np.array([[1, 4, 1],
+                                [4, 16, 4],
+                                [1, 4, 1]])/256
+
+kernel = identity_kernal
+  
+img = cv2.filter2D(src=image, ddepth=-1, kernel=kernel)
+  
+# Shoeing the original and output image
+cv2.imshow('Original', image)
+cv2.imshow('Kernel identity', img)
+  
+cv2.waitKey()
+cv2.destroyAllWindows()
+
+kernel = edge_detection_kernel
+  
+img = cv2.filter2D(src=image, ddepth=-1, kernel=kernel)
+  
+# Shoeing the original and output image
+cv2.imshow('Original', image)
+cv2.imshow('Kernel Blur', img)
+  
+cv2.waitKey()
+cv2.destroyAllWindows()
+
+kernel = sharpen_kernal
+  
+img = cv2.filter2D(src=image, ddepth=-1, kernel=kernel)
+  
+# Shoeing the original and output image
+cv2.imshow('Original', image)
+cv2.imshow('sharpen_kernal', img)
+  
+cv2.waitKey()
+cv2.destroyAllWindows()
+
+kernel = boxblur_kernal
+  
+img = cv2.filter2D(src=image, ddepth=-1, kernel=kernel)
+  
+# Shoeing the original and output image
+cv2.imshow('Original', image)
+cv2.imshow('boxblur_kernal', img)
+  
+cv2.waitKey()
+cv2.destroyAllWindows()
+
+kernel =gaussianblur_kernal
+  
+img = cv2.filter2D(src=image, ddepth=-1, kernel=kernel)
+  
+# Shoeing the original and output image
+cv2.imshow('Original', image)
+cv2.imshow('gaussianblur_kernal', img)
+  
+cv2.waitKey()
+cv2.destroyAllWindows()
+

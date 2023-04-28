@@ -1,0 +1,22 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+********************************************************************************************************************************
+
+import numpy as np
+import cv2 as cv
+
+#sacling of image
+scale=1.5
+def scaling(img,matrix):
+    return cv.warpAffine(img,matrix,(img.shape[0],img.shape[1]))
+
+img=cv.imread("Colorful_fishes.jpg")
+S=np.float32([[scale,0,0],[0,scale,0]])
+new_img=scaling(img,S)
+cv.imshow('real',img)
+cv.imshow('new_img',new_img)
+cv.waitKey(0)
+cv.destroyAllWindows()

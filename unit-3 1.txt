@@ -1,0 +1,26 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+*********************************************************************************************************************************
+background subtraction
+
+import cv2
+import os
+
+image1=cv2.imread('img.jpg')
+image2=cv2.imread('im1.jpg')
+cv2.imshow('image',image1)
+cv2.imshow('image1',image2)
+cv2.waitKey(0)
+OUTPUT:
+-1
+
+image1=cv2.resize(image1,(900,900))
+image2=cv2.resize(image2,(900,900))
+out=cv2.subtract(image1,image2)
+cv2.imshow('machine',out)
+cv2.waitKey(0)
+OUTPUT:
+-1

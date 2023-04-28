@@ -1,0 +1,26 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+********************************************************************************************************************************
+Sobel Function:
+
+import cv2 as cv
+import numpy as np
+
+#gradient
+img=cv.imread("books.png",0)
+v_kernal_gx= np.array([[-1,-2,-1],[0,0,0],[1,2,1]])
+h_kernal_gx= np.array([[-1,0,1],[-2,0,2],[-1,0,1]])
+gx=cv.filter2D(img.copy(),-1,v_kernal_gx)
+pgx=cv.filter2D(img.copy(),-1,h_kernal_gx)
+cv.imshow("gx",gx)
+cv.imshow("pgx",pgx)
+
+cv.waitKey(0)
+
+#gradient using sobel function
+sobel=cv.Sobel(img,-1,0,1)
+cv.imshow('sobel',sobel)
+cv.waitKey(0)

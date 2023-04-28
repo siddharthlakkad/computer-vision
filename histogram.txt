@@ -1,0 +1,21 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+********************************************************************************************************************************
+#Histogram
+
+import cv2 as cv
+import numpy as np
+
+img = cv.imread('images.jpg',0)
+cv.imshow("img",img)
+cv.waitKey(0)
+cv.destroyAllWindows()
+
+equ = cv.equalizeHist(img) 
+cv.imshow("Histogram",equ)
+cv.imshow("img",img)
+cv.waitKey(0)
+cv.destroyAllWindows()

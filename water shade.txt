@@ -1,0 +1,94 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+*********************************************************************************************************************************
+#Watershed algorithm
+
+import numpy as np 
+import cv2
+
+from matplotlib import pyplot as plt
+orig_img=cv2.imread(r"water_coins.jpg")
+img=cv2.cvtColor(orig_img,cv2.COLOR_BGR2GRAY)
+cv2.imshow("orignal",img)
+cv2.waitKey()
+-1
+
+cv2.THRESH_BINARY_INV,cv2.THRESH_OTSU
+cv2.waitKey()
+-1
+
+ret,thresh=cv2.threshold(img,0,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
+cv2.imshow("im2 ",thresh)
+cv2.waitKey()
+-1
+
+kernel=np.ones((3,3),np.uint8)
+# noise removal
+kernel = np.ones((3,3),np.uint8)
+opening = cv2.morphologyEx(thresh,cv2.MORPH_OPEN,kernel, iterations = 2)
+#cv2.imshow("open",opening)
+sure_bg = cv2.dilate(opening,kernel,iterations=3)
+#cv2.imshow("background",sure_bg)
+cv2.waitKey()
+-1
+
+cv2.imshow("open",opening)
+cv2.imshow("background",sure_bg)
+cv2.waitKey()
+-1
+
+dist_transform = cv2.distanceTransform(opening,cv2.DIST_L2,5)
+cv2.imshow("dist_transform ",dist_transform*10)
+cv2.waitKey()
+-1
+
+ret, sure_fg = cv2.threshold(dist_transform,0.7*dist_transform.max(),255,0)
+cv2.imshow("sure_fg",sure_fg )
+cv2.waitKey()
+-1
+
+sure_fg = np.uint8(sure_fg)
+unknown = cv2.subtract(sure_bg,sure_fg)
+cv2.imshow("unknown ",unknown )
+cv2.waitKey()
+-1
+cv2.imshow("sure_fg",sure_fg )
+cv2.waitKey()
+-1
+
+# Marker labelling
+ret, markers = cv2.connectedComponents(sure_fg)
+np.unique(markers)
+array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
+       17, 18, 19, 20, 21, 22, 23, 24], dtype=int32)
+
+#cv2.imshow("markers",markers*10)
+plt.show("img",markers*10)
+cv2.waitKey()
+-1
+
+markers = markers+1
+# Now, mark the region of unknown with zero
+markers[unknown==255] = 0
+plt.show("img",markers*20)
+cv2.waitKey()
+-1
+
+np.unique(markers)
+array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
+       17, 18, 19, 20, 21, 22, 23, 24, 25], dtype=int32)
+orig_img[markers==1]=[255,0,0]
+markers==-1
+
+array([[False, False, False, ..., False, False, False],
+       [False, False, False, ..., False, False, False],
+       [False, False, False, ..., False, False, False],
+       ...,
+       [False, False, False, ..., False, False, False],
+       [False, False, False, ..., False, False, False],
+       [False, False, False, ..., False, False, False]])
+ 
+ 

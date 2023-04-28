@@ -1,0 +1,50 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+**********************************************************************************************************************************************************
+Flood-Fill WITH QUEUE
+import cv2
+import matplotlib.pyplot as plt
+def flood_fill_(img,x,y,new_color):
+    oldColor = img[x][y]
+    queue = []
+    if oldColor!=new_color:
+        queue.append((x,y))
+        img[x][y] = new_color
+    def isvalid(img,x,y,oldcolor,newColor):
+        if x >=img.shape[0] or y >= img.shape[1] or x < 0 or y<0:
+            return False
+        elif img[x][y] != oldcolor or img[x][y] == newColor:
+            return False
+        return True
+    
+    while queue:
+        sx,sy = queue.pop()
+    
+        if isvalid(img,sx+1,sy,oldColor,new_color):
+            img[sx+1][sy] =new_color
+            queue.append((sx+1,sy))
+​
+        if isvalid(img,sx-1,sy,oldColor,new_color):
+            img[sx-1][sy] = new_color
+            queue.append((sx-1,sy))
+​
+        if isvalid(img,sx,sy+1,oldColor,new_color):
+            img[sx][sy+1] = new_color
+            queue.append((sx,sy+1))
+​
+        if isvalid(img,sx,sy-1,oldColor,new_color):
+            img[sx][sy-1] = new_color
+            queue.append((sx,sy-1))
+        
+    return img
+img = cv2.imread('abc.jpg',0)
+img = cv2.threshold(img,127,255,cv2.THRESH_BINARY)[1]
+new_img = flood_fill_(img.copy(),120,50,0)
+cv2.imshow("original",img)
+cv2.imshow("flooded_img",new_img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+plt.imshow(cv2.cvtColor(img,cv2.COLOR_RGB2BGR))

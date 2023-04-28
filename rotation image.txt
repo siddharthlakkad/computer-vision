@@ -1,0 +1,24 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+********************************************************************************************************************************
+
+
+import numpy as np
+import cv2 as cv
+
+#rotation of image
+angle=int(input('enter the angel: '))
+def rotation(img,matrix):
+    return cv.warpAffine(img,matrix,(img.shape[1],img.shape[1]))
+
+img=cv.imread('Colorful_fishes.jpg')
+img=cv.resize(img,(700,700))
+R=np.float32([[np.cos(angle),np.sin(angle),0],[np.sin(angle),np.cos(angle),1]])
+new_img=rotation(img,R)
+cv.imshow("real_img",img)
+cv.imshow("img_rotation",new_img)
+cv.waitKey(0)
+cv.destroyAllWindows()

@@ -1,0 +1,23 @@
+Msc AI & ML(sem-2)
+NAME: Siddharth Lakkad
+ROLL NO: 02(DS)
+Sub: computer vision 
+Department Of Computer Science Gujarat Uni
+*********************************************************************************************************************************
+Canny:
+
+import cv2
+
+img = cv2.imread("test.jpeg") # Read image
+
+# Setting parameter values
+t_lower = 50 # Lower Threshold
+t_upper = 150 # Upper threshold
+
+# Applying the Canny Edge filter
+edge = cv2.Canny(img, t_lower, t_upper)
+
+cv2.imshow('original', img)
+cv2.imshow('edge', edge)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
